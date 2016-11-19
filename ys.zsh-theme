@@ -35,6 +35,18 @@ ys_hg_prompt_info() {
 	fi
 }
 
+#SSH info
+local ssh_info='$(ys_ssh_prompt_info)'
+ys_ssh_prompt_info() {
+    # make sure this is a remote machine
+    if [ -n "$SSH_CONNECTION" ]; then
+        echo -n > !REMOTE! < "
+    else
+        echo -n ""
+    fi
+}
+
+
 local exit_code="%(?,,C:%{$fg[red]%}%?%{$reset_color%})"
 
 # Prompt format:
@@ -57,4 +69,4 @@ ${hg_info}\
 ${git_info}\
  \
 %{$fg[white]%}[%*] $exit_code
-%{$terminfo[bold]$fg[red]%}$ %{$reset_color%}"
+%{$terminfo[bold]$fg[red]%}${ssh_info}$ %{$reset_color%}"
