@@ -40,7 +40,7 @@ local ssh_info='$(ys_ssh_prompt_info)'
 ys_ssh_prompt_info() {
     # make sure this is a remote machine
     if [ -n "$SSH_CONNECTION" ]; then
-        echo -n > !REMOTE! < "
+        echo -n "> !REMOTE! < "
     else
         echo -n ""
     fi
