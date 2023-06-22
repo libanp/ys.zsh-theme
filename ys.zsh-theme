@@ -36,11 +36,12 @@ ys_hg_prompt_info() {
 }
 
 #SSH info
-local ssh_info='$(ys_ssh_prompt_info)'
-ys_ssh_prompt_info() {
-    # make sure this is a remote machine
+local machine_info='$(ys_machine_prompt_info)'
+ys_machine_prompt_info() {
     if [ -n "$SSH_CONNECTION" ]; then
         echo -n "> !REMOTE! < "
+    elif [ -n "$container" ]; then
+        echo -n "> ${container} < "
     else
         echo -n ""
     fi
@@ -69,4 +70,4 @@ ${hg_info}\
 ${git_info}\
  \
 %{$fg[white]%}[%*] $exit_code
-%{$terminfo[bold]$fg[red]%}${ssh_info}$ %{$reset_color%}"
+%{$terminfo[bold]$fg[red]%}${machine_info}$ %{$reset_color%}"
