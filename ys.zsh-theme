@@ -39,7 +39,7 @@ ys_hg_prompt_info() {
 local machine_info='$(ys_machine_prompt_info)'
 ys_machine_prompt_info() {
     if [ -n "$SSH_CONNECTION" ]; then
-        echo -n "> !REMOTE! < "
+        echo -n "> !SSH! < "
     elif [ -n "$container" ]; then
         echo -n "> ${container} < "
     else
